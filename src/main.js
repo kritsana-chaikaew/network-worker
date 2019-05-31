@@ -60,6 +60,21 @@ const influx = new Influx.InfluxDB({
         logout_dual_stacks: Influx.FieldType.FLOAT
       },
       tags: []
+    },
+    {
+      measurement: 'stat',
+      fields: {
+        active_devices: Influx.FieldType.FLOAT,
+        active_users: Influx.FieldType.FLOAT,
+        active_dual_stacks: Influx.FieldType.FLOAT,
+        active_pure_v4: Influx.FieldType.FLOAT,
+        active_pure_v6: Influx.FieldType.FLOAT,
+        active_ip_all: Influx.FieldType.FLOAT,
+        active_flow_v4: Influx.FieldType.FLOAT,
+        active_flow_v6: Influx.FieldType.FLOAT,
+        active_flow_all: Influx.FieldType.FLOAT
+      },
+      tags: []
     }
   ]
 })
@@ -247,6 +262,10 @@ const main = async () => {
       {
         measurement: 'login',
         fields: loginRate
+      },
+      {
+        measurement: 'stat',
+        fields: stat
       }
     ])
 
