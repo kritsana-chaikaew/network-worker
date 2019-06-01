@@ -4,12 +4,16 @@ const Influx = require('influx')
 
 require('dotenv').config()
 
-const client = redis.createClient()
+const client = redis.createClient({
+  host: process.env.REDIS_HOST,
+  port: process.env.REDIS_PORT
+})
 const {promisify} = require('util');
 client.getAsync = promisify(client.get).bind(client);
 const influx = new Influx.InfluxDB({
-  host: 'localhost',
-  database: 'networkdb',
+  host: process.env.INFLUXDB_HOST,
+  port: process.env.INFLUXDB_PORT,
+  database: process.env.INFLUXDB_DATABASE_NAME,
   schema: [
     {
       measurement: 'bandwidth',
